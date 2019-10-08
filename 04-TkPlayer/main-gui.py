@@ -1,11 +1,12 @@
 #coding:utf8
 import os
 
-from Tkinter import *
-import tkFileDialog
-import ttk
-import tkMessageBox
+from tkinter import *
+from tkinter.filedialog import askopenfilename
+from tkinter import messagebox
 import Pmw
+from tkinter import ttk
+
 
 import player
 
@@ -253,11 +254,11 @@ class GUI:
 
 	def toggle_mute(self):
 		if self.mutebtn.config('text')[-1] == 'unmute':
-			print self.mutebtn.config('text')
+			print (self.mutebtn.config('text'))
 			self.mutebtn.config(text='mute', image=self.muteicon)
 			self.player.mute()
 		elif self.mutebtn.config('text')[-1] == 'mute':
-			print self.mutebtn.config('text')
+			print (self.mutebtn.config('text'))
 			self.mutebtn.config(text='unmute', image=self.unmuteicon)
 			self.player.unmute()
 
@@ -265,7 +266,7 @@ class GUI:
 		self.selectedloopchoice = self.loopv.get()
 
 	def close_player(self):
-		if tkMessageBox.askokcancel("Quit", "Do you really want to close quit?"):
+		if messagebox.askokcancel("Quit", "Do you really want to close quit?"):
 			try:
 				self.player.pause()
 			except:
