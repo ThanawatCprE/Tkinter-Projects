@@ -1,6 +1,6 @@
-from Tkinter import *
-import tkFileDialog
-import tkMessageBox
+from tkinter import *
+from tkinter.filedialog import askopenfilename
+from tkinter import messagebox
 import os
 
 root = Tk()
@@ -51,13 +51,13 @@ def toggle_highlight(event=None):
 
 #########################################################################
 def about():
-    tkMessageBox.showinfo("About", "A Editor using Tkinter by Leohc92")
+    messagebox.showinfo("About", "A Editor using Tkinter by Leohc92")
 
 def help_box(event=None):
-    tkMessageBox.showinfo("Help", "For help email to chenyu.wu@outlook.com", icon='question')
+    messagebox.showinfo("Help", "For help email to chenyu.wu@outlook.com", icon='question')
 
 def exit_editor():
-    if tkMessageBox.askokcancel("Quti", "Do you really want to quit?"):
+    if messagebox.askokcancel("Quti", "Do you really want to quit?"):
         root.destroy()
 root.protocol('WM_DELETE_WINDOW',exit_editor)
 
