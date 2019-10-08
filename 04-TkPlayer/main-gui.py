@@ -1,11 +1,12 @@
 #coding:utf8
 import os
 
-from Tkinter import *
-import tkFileDialog
-import ttk
-import tkMessageBox
+from tkinter import *
+from tkinter.filedialog import askopenfilename
+from tkinter import messagebox
 import Pmw
+from tkinter import ttk
+
 
 import player
 
@@ -162,7 +163,7 @@ class GUI:
 			self.player.pause()
 
 	def add_file(self):
-		filename = tkFileDialog.askopenfilename(filetypes=[('All supported', '.mp3 .wav .ogg'), ('All files', '*.*')])
+		filename = askopenfilename.askopenfilename(filetypes=[('All supported', '.mp3 .wav .ogg'), ('All files', '*.*')])
 		if filename:
 			self.listbox.insert(END, filename)
 			self.alltracks = list(self.listbox.get(0, END))
@@ -173,7 +174,7 @@ class GUI:
 		self.alltracks =list(self.listbox.get(0, END))
 
 	def add_dir(self):
-		path = tkFileDialog.askdirectory()
+		path = askopenfilename.askdirectory()
 		if path:
 			tfileList = []
 			for (dirpath, dirnames, filenames) in os.walk(path):
@@ -253,11 +254,11 @@ class GUI:
 
 	def toggle_mute(self):
 		if self.mutebtn.config('text')[-1] == 'unmute':
-			print self.mutebtn.config('text')
+			print (self.mutebtn.config('text'))
 			self.mutebtn.config(text='mute', image=self.muteicon)
 			self.player.mute()
 		elif self.mutebtn.config('text')[-1] == 'mute':
-			print self.mutebtn.config('text')
+			print (self.mutebtn.config('text'))
 			self.mutebtn.config(text='unmute', image=self.unmuteicon)
 			self.player.unmute()
 
@@ -265,7 +266,7 @@ class GUI:
 		self.selectedloopchoice = self.loopv.get()
 
 	def close_player(self):
-		if tkMessageBox.askokcancel("Quit", "Do you really want to close quit?"):
+		if messagebox.askokcancel("Quit", "Do you really want to close quit?"):
 			try:
 				self.player.pause()
 			except:
